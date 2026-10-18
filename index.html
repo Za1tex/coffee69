@@ -1,0 +1,1017 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Coffee 69 — кофейня</title>
+<meta name="description" content="Coffee 69 — кофейня в Кореновске, ул. Красная, 75а. Авторский кофе, ягодные чаи, лимонады, милкшейки и смузи.">
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#080706; --bg2:#100d0b; --card:#16120f; --ink:#f4ede4; --muted:#a39587;
+  --line:rgba(244,237,228,.11); --accent:#cf8a48; --accent-2:#e3a566;
+  --serif:"Playfair Display",Georgia,serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:Manrope,system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.wrap{width:min(1180px,100% - 32px);margin-inline:auto}
+.accent{color:var(--accent-2)}
+em{font-style:italic}
+
+/* ---------- header ---------- */
+.nav{position:fixed;inset:0 0 auto;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px clamp(16px,4vw,52px);background:rgba(10,8,7,.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:12px;font-family:var(--serif);font-weight:700;font-size:21px;letter-spacing:.01em}
+.brand img{width:40px;height:40px;border-radius:50%;background:#fff}
+.nav ul{display:flex;gap:34px;list-style:none;font-size:16px;color:#cfc4b8}
+.nav ul a{transition:color .2s}
+.nav ul a:hover{color:var(--ink)}
+.nav-right{display:flex;align-items:center;gap:34px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:999px;background:var(--accent);color:#1a0f07;font-weight:700;font-size:16px;transition:transform .2s,background .2s,color .2s,border-color .2s;white-space:nowrap}
+.btn:hover{transform:translateY(-2px);background:var(--accent-2)}
+.btn.ghost{background:rgba(0,0,0,.25);color:var(--ink);border:1px solid rgba(244,237,228,.25)}
+.btn.ghost:hover{border-color:var(--accent-2);color:var(--accent-2)}
+@media(max-width:760px){.nav ul{display:none}.nav .btn{padding:10px 18px;font-size:14px}.brand{font-size:18px}}
+
+/* ---------- cinematic scroll hero ---------- */
+.pour{height:380vh;position:relative}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:#050403}
+#scene{position:absolute;inset:0;width:100%;height:100%;display:block}
+.stage::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;
+  background:
+    linear-gradient(180deg,rgba(5,4,3,.55) 0%,rgba(5,4,3,0) 22%),
+    radial-gradient(120% 95% at 50% 55%,transparent 55%,rgba(0,0,0,.7) 100%)}
+.grain{position:absolute;inset:-60px;z-index:2;pointer-events:none;opacity:.07;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:grain .9s steps(3) infinite}
+@keyframes grain{0%{transform:translate(0,0)}33%{transform:translate(-18px,12px)}66%{transform:translate(14px,-20px)}100%{transform:translate(0,0)}}
+
+.captions{position:absolute;inset:0;z-index:3;pointer-events:none}
+.cap{position:absolute;width:min(560px,38vw);opacity:0;transform:translateY(26px);filter:blur(6px);transition:opacity .8s ease,transform .8s ease,filter .8s ease;pointer-events:none}
+.cap.on{opacity:1;transform:none;filter:none;pointer-events:auto}
+.cap[data-pos="left"]{left:clamp(16px,6vw,116px);top:40%}
+.cap[data-pos="right"]{left:57%;top:42%}
+.cap[data-pos="top"]{left:clamp(16px,6vw,116px);top:clamp(96px,15vh,160px);width:min(520px,31vw)}
+.kicker{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--accent-2);margin-bottom:16px}
+.cap h1,.cap h2{font-family:var(--serif);font-weight:600;font-size:clamp(34px,4.2vw,68px);line-height:1.05;letter-spacing:-.01em;text-shadow:0 4px 40px rgba(0,0,0,.75)}
+.cap p{margin-top:18px;color:#cbbfb2;font-size:clamp(15px,1.2vw,17px);max-width:400px;text-shadow:0 2px 20px rgba(0,0,0,.85)}
+.cap .actions{display:flex;gap:12px;margin-top:26px;flex-wrap:wrap}
+
+.meter{position:absolute;z-index:3;left:clamp(16px,6vw,116px);bottom:32px;display:flex;gap:30px;padding:14px 22px;border-radius:18px;background:rgba(8,6,5,.6);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.meter b span{display:inline-block;min-width:1.6em;text-align:right}
+#mMl{min-width:2.2em}
+.meter .lbl{display:block;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.meter b{display:block;font-family:var(--serif);font-weight:500;font-size:24px;font-variant-numeric:tabular-nums;margin-top:2px}
+.rail{position:absolute;z-index:3;left:0;bottom:0;height:2px;width:100%;background:rgba(244,237,228,.08)}
+.rail i{display:block;height:100%;width:0;background:var(--accent)}
+.hint{position:absolute;z-index:3;left:50%;bottom:28px;transform:translateX(-50%);display:flex;align-items:center;gap:10px;padding:9px 16px 9px 12px;border-radius:999px;background:rgba(10,8,7,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#d8cdc1;transition:opacity .5s}
+.hint.off{opacity:0}
+.mouse{width:16px;height:24px;border:1.6px solid #d8cdc1;border-radius:9px;position:relative}
+.mouse::after{content:"";position:absolute;left:50%;top:4px;width:2px;height:5px;margin-left:-1px;border-radius:2px;background:var(--accent-2);animation:wheel 1.6s infinite}
+@keyframes wheel{0%{opacity:0;transform:translateY(0)}30%{opacity:1}100%{opacity:0;transform:translateY(8px)}}
+@media(max-width:1200px){.meter{display:none}}
+
+@media(max-width:860px){
+  .cap,.cap[data-pos]{left:16px;right:16px;top:auto;bottom:84px;width:auto}
+  .cap[data-pos="top"]{top:84px;bottom:auto}
+  .kicker{font-size:10px;margin-bottom:10px}
+  .cap h1,.cap h2{font-size:clamp(30px,8.6vw,44px)}
+  .cap p{font-size:14px;margin-top:12px}
+  .cap .actions{margin-top:16px}
+  .cap .btn{padding:11px 18px;font-size:14px}
+  .hint{bottom:18px}
+}
+
+/* ---------- content sections ---------- */
+.block{padding:clamp(80px,12vw,150px) 0;position:relative}
+.eyebrow{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--accent-2)}
+.h2{font-family:var(--serif);font-weight:600;font-size:clamp(34px,4.6vw,64px);line-height:1.06;letter-spacing:-.01em;margin-top:14px}
+.about-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(28px,6vw,96px);align-items:end}
+.about-grid p{color:var(--muted);font-size:clamp(16px,1.4vw,18px)}
+.about-grid p+p{margin-top:16px}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:64px}
+.feat{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:32px;transition:transform .3s,border-color .3s}
+.feat:hover{transform:translateY(-6px);border-color:rgba(207,138,72,.45)}
+.feat svg{width:38px;height:38px;color:var(--accent-2)}
+.feat h3{font-family:var(--serif);font-size:24px;font-weight:600;margin:20px 0 8px;line-height:1.2}
+.feat p{color:var(--muted);font-size:15px}
+@media(max-width:860px){.about-grid,.features{grid-template-columns:1fr}}
+
+.marquee{border-block:1px solid var(--line);overflow:hidden;padding:24px 0;background:var(--bg2)}
+.marquee .track{display:flex;width:max-content;animation:marq 34s linear infinite}
+.marquee span{font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(32px,5vw,64px);padding-right:56px;white-space:nowrap;line-height:1.15;color:rgba(244,237,228,.28)}
+.marquee span:nth-child(odd){color:var(--ink);font-style:normal}
+@keyframes marq{to{transform:translateX(-50%)}}
+
+.menu-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap}
+.menu-head p{color:var(--muted);max-width:380px}
+.menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:56px}
+.menu-col{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:30px}
+.menu-col h3{font-family:var(--serif);font-size:26px;font-weight:600;padding-bottom:10px}
+.mtable{display:grid;grid-template-columns:1fr auto;column-gap:18px;align-items:baseline}
+.mtable.two{grid-template-columns:1fr auto auto}
+.vol{font-size:12px;letter-spacing:.08em;color:var(--muted);text-align:right;white-space:nowrap}
+.row{display:contents}
+.row>*{padding:13px 0;border-bottom:1px dashed var(--line)}
+.row:last-child>*{border-bottom:0}
+.row .name{font-weight:700}
+.row small{display:block;color:var(--muted);font-size:13px;font-weight:400;line-height:1.4}
+.row .p{font-weight:700;font-size:16px;color:var(--accent-2);white-space:nowrap;text-align:right;min-width:52px}
+.ig-link{color:var(--accent-2);text-decoration:underline;text-underline-offset:3px}
+.menu-ig{display:flex;align-items:center;justify-content:space-between;gap:20px 32px;flex-wrap:wrap;margin-top:20px;padding:28px 30px;border-radius:22px;border:1px solid rgba(207,138,72,.4);background:linear-gradient(120deg,rgba(207,138,72,.16),rgba(207,138,72,.04))}
+.menu-ig h3{font-family:var(--serif);font-size:clamp(22px,2.4vw,30px);font-weight:600;line-height:1.2}
+.menu-ig p{color:var(--muted);margin-top:4px}
+@media(max-width:1060px){.menu-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:680px){.menu-grid{grid-template-columns:1fr}}
+
+.contact{display:grid;grid-template-columns:1.2fr 1fr;gap:20px;margin-top:48px}
+.c-card{background:var(--card);border:1px solid var(--line);border-radius:26px;padding:clamp(26px,4vw,48px)}
+.c-list{display:grid;gap:24px}
+.c-list .lbl{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.16em}
+.c-list .val{font-family:var(--serif);font-size:clamp(22px,2.2vw,28px);font-weight:600;margin-top:2px}
+.socials{display:flex;gap:12px;margin-top:36px;flex-wrap:wrap}
+.badge-card{display:grid;place-items:center;background:radial-gradient(circle at 50% 42%,#2a1f17,var(--card) 70%);min-height:380px}
+.ring{position:relative;width:min(300px,72vw);aspect-ratio:1}
+.ring svg{position:absolute;inset:0;width:100%;height:100%;animation:spin 26s linear infinite}
+.ring img{position:absolute;inset:17%;width:66%;height:66%;border-radius:50%;background:#fff;box-shadow:0 24px 60px rgba(0,0,0,.55)}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(max-width:860px){.contact{grid-template-columns:1fr}.badge-card{min-height:320px}}
+
+footer{border-top:1px solid var(--line);padding:32px 0;color:var(--muted);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+footer .brand{color:var(--ink);font-size:18px}
+footer .brand img{width:34px;height:34px}
+
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .9s ease,transform .9s ease}
+.reveal.in{opacity:1;transform:none}
+
+@media(prefers-reduced-motion:reduce){
+  .marquee .track,.ring svg,.grain,.mouse::after{animation:none}
+  .reveal{opacity:1;transform:none;transition:none}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <a class="brand" href="#top"><img src="logo.png" alt="Логотип Coffee 69">Coffee 69</a>
+  <div class="nav-right">
+    <ul>
+      <li><a href="#about">О нас</a></li>
+      <li><a href="#menu">Меню</a></li>
+    </ul>
+    <a class="btn" href="#contacts">Контакты</a>
+  </div>
+</header>
+
+<!-- ===== Scroll-driven espresso pour: basket → stream → cup ===== -->
+<section class="pour" id="top">
+  <div class="stage" id="stage">
+    <canvas id="scene" role="img" aria-label="Эспрессо капает из холдера, превращается в струю и наполняет белую чашку"></canvas>
+    <div class="grain" aria-hidden="true"></div>
+
+    <div class="captions">
+      <div class="cap on" data-pos="left">
+        <div class="kicker">Coffee 69 · Кореновск</div>
+        <h1>Экстракция <em class="accent">не&nbsp;врёт.</em></h1>
+        <p>Листай вниз — и смотри, как варится наш эспрессо.</p>
+      </div>
+      <div class="cap" data-pos="right">
+        <div class="kicker">01 · Девять бар</div>
+        <h2>Обжарено на неделе. Сварено сейчас.</h2>
+        <p>Вода 93&nbsp;°C, 9 бар и 28 секунд — ничего лишнего.</p>
+      </div>
+      <div class="cap" data-pos="top">
+        <div class="kicker">02 · Крема</div>
+        <h2>Карамельная крема в каждой <em class="accent">чашке.</em></h2>
+      </div>
+      <div class="cap" data-pos="top">
+        <div class="kicker">03 · Готово</div>
+        <h2>Твоя чашка <em class="accent">готова.</em></h2>
+        <p>Заходи в Coffee 69 — сварим твой любимый напиток.</p>
+        <div class="actions">
+          <a class="btn" href="#menu">Смотреть меню</a>
+          <a class="btn ghost" href="#contacts">Как нас найти</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="meter" aria-hidden="true">
+      <div><span class="lbl">Температура</span><b><span id="mTemp">20</span>°C</b></div>
+      <div><span class="lbl">Давление</span><b><span id="mBar">0,0</span> бар</b></div>
+      <div><span class="lbl">Время</span><b><span id="mTime">0</span> сек</b></div>
+      <div><span class="lbl">Объём</span><b><span id="mMl">0</span> мл</b></div>
+    </div>
+    <div class="hint" id="hint"><span class="mouse"></span>Листай вниз</div>
+    <div class="rail"><i id="rail"></i></div>
+  </div>
+</section>
+
+<!-- ===== About ===== -->
+<section class="block" id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="reveal">
+        <div class="eyebrow">О нас</div>
+        <h2 class="h2">Кофе, ради которого <em class="accent">возвращаются</em></h2>
+      </div>
+      <div class="reveal">
+        <p>Coffee 69 — кофейня с большим вниманием к деталям. Мы варим кофе так, как любим сами: честно, вкусно и без спешки.</p>
+        <p>Авторский кофе, ягодные чаи, лимонады, милкшейки и смузи — заходи за любимым напитком или оставайся на весь вечер.</p>
+      </div>
+    </div>
+    <div class="features">
+      <div class="feat reveal">
+        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><ellipse cx="20" cy="20" rx="11" ry="16" transform="rotate(30 20 20)"/><path d="M13 31c6-5 2-12 8-17s3-6 3-6"/></svg>
+        <h3>Свежая обжарка</h3>
+        <p>Работаем с зерном свежей обжарки и настраиваем помол под каждый сорт.</p>
+      </div>
+      <div class="feat reveal">
+        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 16h22v8a9 9 0 0 1-9 9h-4a9 9 0 0 1-9-9z"/><path d="M29 18h2a4 4 0 0 1 0 8h-3"/><path d="M14 5c-2 3 2 4 0 7M21 5c-2 3 2 4 0 7"/></svg>
+        <h3>Точный эспрессо</h3>
+        <p>Выверенные рецепты: температура, давление и время под контролем бариста.</p>
+      </div>
+      <div class="feat reveal">
+        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 34V18L20 7l14 11v16z"/><path d="M16 34v-9h8v9"/></svg>
+        <h3>Место, где хочется остаться</h3>
+        <p>Уютный зал, хорошая музыка и Wi‑Fi. Заходишь на пять минут — остаёшься на час.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="track">
+    <span>Раф халва</span><span>Тыквенный латте</span><span>Ягодный чай</span><span>Лимонады</span><span>Coffee 69</span><span>Милкшейки</span><span>Смузи</span>
+    <span>Раф халва</span><span>Тыквенный латте</span><span>Ягодный чай</span><span>Лимонады</span><span>Coffee 69</span><span>Милкшейки</span><span>Смузи</span>
+  </div>
+</div>
+
+<!-- ===== Menu ===== -->
+<section class="block" id="menu">
+  <div class="wrap">
+    <div class="menu-head reveal">
+      <div>
+        <div class="eyebrow">Меню</div>
+        <h2 class="h2">Что сварим?</h2>
+      </div>
+      <p>Здесь самое популярное. Всё меню — в нашем <a class="ig-link" href="https://www.instagram.com/69_coffee_kor/" target="_blank" rel="noopener">Instagram</a>.</p>
+    </div>
+    <div class="menu-grid">
+      <div class="menu-col reveal">
+        <div class="mtable">
+          <h3>Кофе</h3><span class="vol">300 мл</span>
+          <div class="row"><div class="name">Арахисовый раф</div><div class="p">270 ₽</div></div>
+          <div class="row"><div class="name">Раф халва</div><div class="p">270 ₽</div></div>
+          <div class="row"><div class="name">Тыквенный латте</div><div class="p">270 ₽</div></div>
+          <div class="row"><div class="name">Сырный латте</div><div class="p">270 ₽</div></div>
+          <div class="row"><div class="name">Кленовый флэт</div><div class="p">220 ₽</div></div>
+          <div class="row"><div class="name">Тёплый бамбл</div><div class="p">250 ₽</div></div>
+        </div>
+      </div>
+      <div class="menu-col reveal">
+        <div class="mtable">
+          <h3>Ягодный чай</h3><span class="vol">300 мл</span>
+          <div class="row"><div class="name">Облепиха‑клубника</div><div class="p">200 ₽</div></div>
+          <div class="row"><div class="name">Малина‑маракуйя</div><div class="p">200 ₽</div></div>
+          <div class="row"><div class="name">Тропический</div><div class="p">200 ₽</div></div>
+          <div class="row"><div class="name">Имбирный</div><div class="p">200 ₽</div></div>
+          <div class="row"><div class="name">Северная ягода‑мята</div><div class="p">200 ₽</div></div>
+        </div>
+      </div>
+      <div class="menu-col reveal">
+        <div class="mtable two">
+          <h3>Не кофе</h3><span class="vol">200 мл</span><span class="vol">300 мл</span>
+          <div class="row"><div class="name">Глинтвейн</div><div class="p"></div><div class="p">250 ₽</div></div>
+          <div class="row"><div class="name">Авторский какао</div><div class="p"></div><div class="p">250 ₽</div></div>
+          <div class="row"><div class="name">Горячий шоколад</div><div class="p">200 ₽</div><div class="p">230 ₽</div></div>
+          <div class="row"><div class="name">Какао с маршмеллоу</div><div class="p">190 ₽</div><div class="p">220 ₽</div></div>
+          <div class="row"><div class="name">Какао кокос</div><div class="p">220 ₽</div><div class="p">250 ₽</div></div>
+        </div>
+      </div>
+      <div class="menu-col reveal">
+        <div class="mtable">
+          <h3>Лимонад</h3><span class="vol">400 мл</span>
+          <div class="row"><div class="name">Классический</div><div class="p">220 ₽</div></div>
+          <div class="row"><div class="name">Малина‑маракуйя</div><div class="p">220 ₽</div></div>
+          <div class="row"><div class="name">Облепиха‑клубника</div><div class="p">220 ₽</div></div>
+          <div class="row"><div class="name">Манго‑имбирь</div><div class="p">220 ₽</div></div>
+          <div class="row"><div class="name">Ягодный цитрус</div><div class="p">220 ₽</div></div>
+        </div>
+      </div>
+      <div class="menu-col reveal">
+        <div class="mtable">
+          <h3>Милкшейк</h3><span class="vol">300 мл</span>
+          <div class="row"><div class="name">Клубника</div><div class="p">270 ₽</div></div>
+          <div class="row"><div class="name">Манго‑кокос</div><div class="p">270 ₽</div></div>
+          <div class="row"><div class="name">Шоколад‑банан</div><div class="p">270 ₽</div></div>
+          <div class="row"><div class="name">Орео</div><div class="p">270 ₽</div></div>
+          <div class="row"><div class="name">Халва</div><div class="p">270 ₽</div></div>
+        </div>
+      </div>
+      <div class="menu-col reveal">
+        <div class="mtable">
+          <h3>Смузи</h3><span class="vol">300 мл</span>
+          <div class="row"><div class="name">Зелёный<small>яблоко, банан, киви</small></div><div class="p">270 ₽</div></div>
+          <div class="row"><div class="name">Тропический<small>манго, маракуйя, банан, финик, кокосовое молоко</small></div><div class="p">270 ₽</div></div>
+          <div class="row"><div class="name">Красный<small>клубника, банан, апельсиновый сок</small></div><div class="p">270 ₽</div></div>
+          <div class="row"><div class="name">Апероль<small>манго, морковь, апельсиновый сок</small></div><div class="p">270 ₽</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="menu-ig reveal">
+      <div>
+        <h3>Всё меню — в нашем Instagram</h3>
+        <p>Там полный список напитков, новинки и сезонные предложения.</p>
+      </div>
+      <a class="btn" href="https://www.instagram.com/69_coffee_kor/" target="_blank" rel="noopener">Смотреть в Instagram</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Contacts ===== -->
+<section class="block" id="contacts">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow">Контакты</div>
+      <h2 class="h2">Ждём в гости</h2>
+    </div>
+    <div class="contact">
+      <div class="c-card reveal">
+        <div class="c-list">
+          <div><div class="lbl">Адрес</div><div class="val">г. Кореновск, ул. Красная, 75а</div></div>
+          <div><div class="lbl">Часы работы</div><div class="val">Ежедневно 8:00 – 22:00</div></div>
+          <div><div class="lbl">Телефон</div><div class="val"><a href="tel:+79184446969">+7 918 444‑69‑69</a></div></div>
+        </div>
+        <div class="socials">
+          <a class="btn" href="https://www.instagram.com/69_coffee_kor/" target="_blank" rel="noopener">Instagram</a>
+          <a class="btn ghost" href="https://yandex.ru/maps/?text=%D0%9A%D0%BE%D1%80%D0%B5%D0%BD%D0%BE%D0%B2%D1%81%D0%BA%2C%20%D1%83%D0%BB.%20%D0%9A%D1%80%D0%B0%D1%81%D0%BD%D0%B0%D1%8F%2C%2075%D0%B0" target="_blank" rel="noopener">Открыть на карте</a>
+        </div>
+      </div>
+      <div class="c-card badge-card reveal">
+        <div class="ring">
+          <svg viewBox="0 0 200 200" aria-hidden="true">
+            <path id="ringPath" d="M100,12 a88,88 0 1,1 0,176 a88,88 0 1,1 0,-176" fill="none"/>
+            <text font-family="Manrope, sans-serif" font-weight="700" font-size="11" fill="#a39587" letter-spacing="3">
+              <textPath href="#ringPath" textLength="548" lengthAdjust="spacing">COFFEE 69 • ЭСПРЕССО • COFFEE 69 • ЭСПРЕССО •</textPath>
+            </text>
+          </svg>
+          <img src="logo.png" alt="Coffee 69">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="logo.png" alt="">Coffee 69</a>
+    <span>© <span id="year">2026</span> Coffee 69. Сварено с любовью к эспрессо.</span>
+    <a href="#top">Наверх ↑</a>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const $ = s => document.querySelector(s);
+  const TAU = Math.PI * 2;
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  const seg = (p, a, b) => clamp((p - a) / (b - a));
+  const ease = t => t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+  const easeIn = t => t * t;
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const mix = (c1, c2, t) => {
+    const a = c1.match(/\w\w/g).map(h => parseInt(h, 16));
+    const b = c2.match(/\w\w/g).map(h => parseInt(h, 16));
+    return '#' + a.map((v, i) => Math.round(v + (b[i] - v) * t).toString(16).padStart(2, '0')).join('');
+  };
+  const mkCanvas = (w, h) => { const c = document.createElement('canvas'); c.width = w; c.height = h; return c; };
+  const seeded = seed => () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+
+  const pour = $('.pour'), stage = $('#stage'), cv = $('#scene'), ctx = cv.getContext('2d');
+  const caps = [...document.querySelectorAll('.cap')];
+  const ui = {};
+  ['rail', 'hint', 'mTemp', 'mBar', 'mTime', 'mMl'].forEach(id => ui[id] = document.getElementById(id));
+
+  // soft sprites: white steam near the cup, warm smoke in the background
+  const makeSprite = rgb => {
+    const c = mkCanvas(128, 128), s = c.getContext('2d'), g = s.createRadialGradient(64, 64, 0, 64, 64, 64);
+    g.addColorStop(0, `rgba(${rgb},1)`); g.addColorStop(.5, `rgba(${rgb},.35)`); g.addColorStop(1, `rgba(${rgb},0)`);
+    s.fillStyle = g; s.fillRect(0, 0, 128, 128);
+    return c;
+  };
+  const steamSprite = makeSprite('255,246,234'), smokeSprite = makeSprite('170,138,116');
+
+  // brushed-metal texture for the portafilter basket
+  const brushTex = mkCanvas(512, 8);
+  {
+    const b = brushTex.getContext('2d'), r = seeded(9);
+    for (let x = 0; x < 512; x++) {
+      b.fillStyle = r() > .5 ? `rgba(255,255,255,${(r() * .5).toFixed(2)})` : `rgba(0,0,0,${(r() * .6).toFixed(2)})`;
+      b.fillRect(x, 0, 1, 8);
+    }
+  }
+  const brush = ctx.createPattern(brushTex, 'repeat');
+
+  // paper grain for the kraft cup + the round logo sticker
+  const paperTex = mkCanvas(96, 96);
+  {
+    const p = paperTex.getContext('2d'), img = p.createImageData(96, 96), r = seeded(21);
+    for (let i = 0; i < img.data.length; i += 4) {
+      const v = Math.round(r() * 255);
+      img.data[i] = img.data[i + 1] = img.data[i + 2] = v; img.data[i + 3] = 255;
+    }
+    p.putImageData(img, 0, 0);
+  }
+  const paper = ctx.createPattern(paperTex, 'repeat');
+  const sticker = new Image();
+  sticker.src = 'sticker.png';
+
+  // ---------- layout (world: y = 0 is the bottom of the basket, the cup sits far below) ----------
+  let W = 0, H = 0, DPR = 1, bg, L = {};
+  function resize() {
+    DPR = Math.min(devicePixelRatio || 1, 1.5);
+    W = stage.clientWidth; H = stage.clientHeight;
+    cv.width = Math.round(W * DPR); cv.height = Math.round(H * DPR);
+    const mobile = W < 760;
+    // takeaway paper cup — taller and narrower than the stream's scale reference
+    const rx = mobile ? Math.min(W * .25, H * .17) : Math.min(W * .16, H * .25);
+    const k = (mobile ? Math.min(W * .38, H * .3) : Math.min(W * .25, H * .5)) / 470;
+    const bRx = mobile ? W * .44 : Math.min(W * .28, H * .62);
+    const rimY = H * 1.75;
+    const r = seeded(69);
+    L = {
+      mobile, cx: W * .5, rx, ry: rx * .27, lip: rx * .05, h: rx * 2.6, rb: rx * .74, depthMax: rx * .75,
+      k, rimY, bRx, bRy: bRx * .075, sw: bRx / 540,
+      F0: H * .2, F1: rimY + H * .04,
+      beads: Array.from({ length: 46 }, () => ({ a: r() * TAU, d: Math.sqrt(r()) * .88, s: .5 + r() }))
+    };
+    buildBg();
+  }
+
+  function buildBg() {
+    bg = mkCanvas(cv.width, cv.height);
+    const b = bg.getContext('2d'); b.scale(DPR, DPR);
+    b.fillStyle = '#050403'; b.fillRect(0, 0, W, H);
+    const blob = (x, y, r, c) => {
+      const g = b.createRadialGradient(x, y, 0, x, y, r);
+      g.addColorStop(0, c); g.addColorStop(1, 'rgba(0,0,0,0)');
+      b.fillStyle = g; b.fillRect(x - r, y - r, r * 2, r * 2);
+    };
+    blob(W * .5, H * .1, Math.max(W * .45, H * .7), 'rgba(58,40,30,.45)');
+    blob(W * .5, H * .62, Math.max(W * .35, H * .5), 'rgba(96,48,16,.16)');
+    const r = seeded(7);
+    for (let i = 0; i < 14; i++) blob(r() * W, r() * H, 8 + r() * 36, `rgba(255,170,90,${(.02 + r() * .04).toFixed(3)})`);
+  }
+
+  // ---------- particles ----------
+  const steam = Array.from({ length: 44 }, () => ({ s: Math.random(), l: Math.random() }));
+  const smoke = Array.from({ length: 30 }, () => ({ x: Math.random(), y: Math.random(), s: .6 + Math.random(), sp: .015 + Math.random() * .02, a: .5 + Math.random() * .5 }));
+  const sources = [{ dx: 0, dy: 0, period: 1.35, t: .4 }, { dx: -.3, dy: .45, period: 2.3, t: 1.2 }];
+  const drops = [], splash = [];
+
+  function drawSmoke(layer, t, alphaMul) {
+    const { cx, rimY } = L;
+    const y0 = -H * .7, span = rimY + H * 1.1;
+    ctx.save();
+    ctx.globalCompositeOperation = 'lighter';
+    smoke.forEach((q, i) => {
+      if (i % 3 === 0 ? layer !== 1 : layer !== 0) return;
+      const y = y0 + (((q.y - t * q.sp) % 1 + 1) % 1) * span;
+      const x = cx + (q.x - .5) * W * 1.3 + Math.sin(t * .3 + q.s * 9) * W * .03;
+      const sz = H * .38 * q.s;
+      ctx.globalAlpha = .055 * q.a * alphaMul;
+      ctx.drawImage(smokeSprite, x - sz / 2, y - sz / 2, sz, sz);
+    });
+    ctx.restore();
+  }
+
+  function drawSteam(layer, amt) {
+    const { cx, rimY, ry, rx } = L;
+    ctx.save();
+    ctx.globalCompositeOperation = 'lighter';
+    steam.forEach((q, i) => {
+      if (i % 2 !== layer) return;
+      const l = q.l;
+      const x = cx + (q.s - .5) * rx * 1.3 + Math.sin(l * 3 + q.s * 20) * rx * .18;
+      const y = rimY - ry * .2 - l * H * .62;
+      const sz = rx * (.3 + l * .75);
+      ctx.globalAlpha = Math.sin(l * Math.PI) * .085 * amt;
+      ctx.drawImage(steamSprite, x - sz / 2, y - sz / 2, sz, sz);
+    });
+    ctx.restore();
+  }
+
+  // ---------- portafilter basket ----------
+  function drawBasket() {
+    const { cx, bRx, bRy, sw } = L;
+    const top = -H * 1.2;
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(cx - bRx, top); ctx.lineTo(cx - bRx, 0);
+    ctx.ellipse(cx, 0, bRx, bRy, 0, Math.PI, 0, true);
+    ctx.lineTo(cx + bRx, top); ctx.closePath();
+    const g = ctx.createLinearGradient(cx - bRx, 0, cx + bRx, 0);
+    [[0, '#1b1918'], [.07, '#5d5955'], [.18, '#cfcbc5'], [.27, '#8d8984'], [.4, '#ebe8e3'], [.52, '#9b9792'],
+     [.64, '#d9d5cf'], [.78, '#76726d'], [.9, '#3f3c39'], [1, '#141312']].forEach(([o, c]) => g.addColorStop(o, c));
+    ctx.fillStyle = g; ctx.fill();
+    ctx.clip();
+    ctx.globalAlpha = .1; ctx.fillStyle = brush;
+    ctx.fillRect(cx - bRx, top, bRx * 2, -top + bRy);
+    ctx.globalAlpha = 1;
+    // warm copper glow from the coffee on the lower band
+    ctx.globalCompositeOperation = 'overlay';
+    const cg = ctx.createLinearGradient(0, -bRx * .22, 0, bRy);
+    cg.addColorStop(0, 'rgba(210,110,40,0)'); cg.addColorStop(1, 'rgba(230,120,45,.85)');
+    ctx.fillStyle = cg; ctx.fillRect(cx - bRx, -bRx * .22, bRx * 2, bRx * .22 + bRy);
+    ctx.globalCompositeOperation = 'source-over';
+    // machined grooves
+    [-.05, -.17, -.42].forEach(o => {
+      const y = bRx * o;
+      ctx.beginPath(); ctx.ellipse(cx, y, bRx, bRy, 0, 0, Math.PI);
+      ctx.lineWidth = 2 * sw + .5; ctx.strokeStyle = 'rgba(0,0,0,.4)'; ctx.stroke();
+      ctx.beginPath(); ctx.ellipse(cx, y + 2.5 * sw, bRx, bRy, 0, 0, Math.PI);
+      ctx.lineWidth = 1.2 * sw + .4; ctx.strokeStyle = 'rgba(255,240,225,.25)'; ctx.stroke();
+    });
+    ctx.restore();
+
+    // bottom face — the coffee seeping through the filter
+    ctx.save();
+    ctx.translate(cx, 0); ctx.scale(1, bRy / bRx);
+    const fg = ctx.createRadialGradient(0, 0, 0, 0, 0, bRx);
+    fg.addColorStop(0, '#6a3212'); fg.addColorStop(.55, '#3a1a09'); fg.addColorStop(.88, '#5e2c10'); fg.addColorStop(1, '#c47a3e');
+    ctx.beginPath(); ctx.arc(0, 0, bRx, 0, TAU); ctx.fillStyle = fg; ctx.fill();
+    L.beads.forEach(b => {
+      const x = Math.cos(b.a) * b.d * bRx, y = Math.sin(b.a) * b.d * bRx, r = bRx * .018 * b.s;
+      const bg2 = ctx.createRadialGradient(x - r * .3, y - r * .3, 0, x, y, r);
+      bg2.addColorStop(0, 'rgba(255,214,160,.95)'); bg2.addColorStop(.45, 'rgba(196,108,44,.9)'); bg2.addColorStop(1, 'rgba(90,40,12,0)');
+      ctx.beginPath(); ctx.arc(x, y, r, 0, TAU); ctx.fillStyle = bg2; ctx.fill();
+    });
+    ctx.restore();
+    ctx.beginPath(); ctx.ellipse(cx, 0, bRx * .997, bRy, 0, 0, Math.PI);
+    ctx.lineWidth = 2.5 * sw + 1; ctx.strokeStyle = 'rgba(240,170,110,.55)'; ctx.stroke();
+  }
+
+  // a drop hanging from the basket, swelling until it lets go
+  function drawHanging(x, y0, grow, R) {
+    const rr = R * (.25 + .75 * grow);
+    const by = y0 + rr * .5 + R * 1.1 * grow;
+    const nw = rr * .42;
+    const g = ctx.createRadialGradient(x - rr * .35, by - rr * .35, 0, x, by, rr * 1.2);
+    g.addColorStop(0, '#ffd7a0'); g.addColorStop(.35, '#d9832f'); g.addColorStop(.8, '#7a3510'); g.addColorStop(1, '#3a1606');
+    ctx.beginPath();
+    ctx.moveTo(x - nw, y0);
+    ctx.bezierCurveTo(x - nw, by - rr * .7, x - rr, by - rr * .6, x - rr, by);
+    ctx.arc(x, by, rr, Math.PI, 0, true);
+    ctx.bezierCurveTo(x + rr, by - rr * .6, x + nw, by - rr * .7, x + nw, y0);
+    ctx.closePath();
+    ctx.fillStyle = g; ctx.fill();
+  }
+
+  function drawDrop(x, y, r, vy) {
+    const stretch = 1 + Math.min(vy / (H * 2), .7);
+    const g = ctx.createRadialGradient(x - r * .35, y - r * .4, 0, x, y, r * 1.2);
+    g.addColorStop(0, '#ffd8a2'); g.addColorStop(.35, '#d8822f'); g.addColorStop(.85, '#6e2f0e'); g.addColorStop(1, '#341405');
+    ctx.beginPath(); ctx.ellipse(x, y, r / Math.sqrt(stretch), r * stretch, 0, 0, TAU);
+    ctx.fillStyle = g; ctx.fill();
+  }
+
+  // ---------- espresso stream (lit like a liquid cylinder) ----------
+  const shadeStops = [[0, [30, 9, 2]], [.35, [104, 42, 10]], [.62, [176, 82, 22]], [.85, [232, 142, 62]], [1, [255, 196, 122]]];
+  const shade = d => {
+    for (let i = 1; i < shadeStops.length; i++) {
+      const [o1, c1] = shadeStops[i - 1], [o2, c2] = shadeStops[i];
+      if (d <= o2) {
+        const f = (d - o1) / (o2 - o1);
+        return `rgb(${c1.map((v, j) => Math.round(v + (c2[j] - v) * f)).join(',')})`;
+      }
+    }
+    return 'rgb(255,196,122)';
+  };
+  // light from the front-left; edges fall off (fresnel-ish) so the stream reads as round
+  const BANDS = 16;
+  const bandColors = Array.from({ length: BANDS }, (_, i) => {
+    const f0 = Math.sin(-Math.PI / 2 + Math.PI * i / BANDS), f1 = Math.sin(-Math.PI / 2 + Math.PI * (i + 1) / BANDS);
+    const fm = (f0 + f1) / 2, nz = Math.sqrt(1 - fm * fm);
+    const d = Math.max(0, -.55 * fm + .83 * nz);
+    return { f0, f1, color: shade(clamp(.06 + .94 * Math.pow(d, 1.3) * (.3 + .7 * nz))) };
+  });
+  // seamless ripple texture that slides down the stream
+  const waveTex = mkCanvas(4, 256);
+  {
+    const w = waveTex.getContext('2d');
+    for (let y = 0; y < 256; y++) {
+      const a = y / 256 * TAU;
+      const v = .5 + .22 * Math.sin(a * 3) + .14 * Math.sin(a * 7 + 1) + .09 * Math.sin(a * 13 + 2);
+      const c = Math.round(clamp(v) * 255);
+      w.fillStyle = `rgb(${c},${c},${c})`; w.fillRect(0, y, 4, 1);
+    }
+  }
+  const wave = ctx.createPattern(waveTex, 'repeat');
+
+  function drawStream(yTop, yBot, t, z, widthMul, taperTop, taperBot) {
+    if (yBot - yTop < 2) return;
+    const { cx, k, rimY } = L;
+    const n = Math.max(2, Math.ceil((yBot - yTop) / (3 / z)));
+    const S = [];   // per sample: y, centre x, left half-width, right half-width
+    for (let i = 0; i <= n; i++) {
+      const y = yTop + (yBot - yTop) * i / n;
+      const fall = clamp(y / rimY);
+      const xc = cx + (Math.sin(y * .009 + t * 1.1) * 3 + Math.sin(y * .031 - t * 6) * 1.4) * k * fall;
+      let w = (40 - 14 * fall) * k * widthMul;
+      w *= 1 + 1.5 * Math.exp(-y / (H * .03));            // cone where it leaves the basket
+      const turb = .2 + .8 * Math.min(1, fall * 3);
+      const n1 = (.2 * Math.sin(y * .043 - t * 13) + .1 * Math.sin(y * .12 - t * 21 + 1.3)) * turb;
+      const n2 = (.2 * Math.sin(y * .047 - t * 13.5 + 2.1) + .1 * Math.sin(y * .11 - t * 19 + .4)) * turb;
+      let tap = 1;
+      if (taperTop) tap *= Math.sqrt(clamp((y - yTop) / (70 * k)));
+      if (taperBot) tap *= Math.sqrt(clamp((yBot - y) / (18 * k)));
+      S.push(y, xc, w * (1 + n1) * tap, w * (1 + n2) * tap);
+    }
+    // traces a strip between two fractions of the width (-1 = left edge, 1 = right edge);
+    // a fraction may be a function of y so the strip can meander
+    const band = (fa, fb) => {
+      const at = (i, f) => { const v = typeof f === 'function' ? f(S[i]) : f; return S[i + 1] + v * (v < 0 ? S[i + 2] : S[i + 3]); };
+      ctx.beginPath();
+      for (let i = 0; i < S.length; i += 4) i ? ctx.lineTo(at(i, fa), S[i]) : ctx.moveTo(at(i, fa), S[i]);
+      for (let i = S.length - 4; i >= 0; i -= 4) ctx.lineTo(at(i, fb), S[i]);
+      ctx.closePath();
+    };
+
+    // warm glow around the stream
+    band(-1, 1);
+    ctx.save();
+    ctx.shadowColor = 'rgba(255,120,30,.28)';
+    ctx.shadowBlur = 20 * k * DPR * z;
+    ctx.fillStyle = '#5a2208';
+    ctx.fill();
+    ctx.restore();
+
+    // cylinder shading, band by band
+    bandColors.forEach(b => { band(b.f0 - .012, b.f1 + .012); ctx.fillStyle = b.color; ctx.fill(); });
+
+    ctx.save();
+    // ripples rolling down the surface
+    band(-1, 1);
+    const sc = 1.6 * k + .4;
+    wave.setTransform(new DOMMatrix().translate(0, (yTop - t * 520 * k) % (256 * sc)).scale(1, sc));
+    ctx.globalCompositeOperation = 'soft-light';
+    ctx.globalAlpha = .75;
+    ctx.fillStyle = wave; ctx.fill();
+    ctx.globalAlpha = 1;
+    // self-shadow along the right side, deepest where the stream necks in
+    band(.35, 1);
+    const sh = ctx.createLinearGradient(L.cx, 0, L.cx + 40 * k * widthMul, 0);
+    sh.addColorStop(0, 'rgba(10,3,0,0)'); sh.addColorStop(1, 'rgba(10,3,0,.55)');
+    ctx.globalCompositeOperation = 'multiply';
+    ctx.fillStyle = sh; ctx.fill();
+    // twisting specular highlight + warm rim light on the shadow side
+    ctx.globalCompositeOperation = 'lighter';
+    const fs = y => -.4 + .14 * Math.sin(y * .017 - t * 8) + .06 * Math.sin(y * .05 - t * 15);
+    ctx.shadowColor = 'rgba(255,225,180,.9)';
+    ctx.shadowBlur = 5 * k * DPR * z;
+    band(y => fs(y) - .07, y => fs(y) + .07);
+    ctx.fillStyle = 'rgba(255,232,196,.42)'; ctx.fill();
+    band(y => fs(y) - .02, y => fs(y) + .02);
+    ctx.fillStyle = 'rgba(255,248,232,.55)'; ctx.fill();
+    ctx.shadowBlur = 0;
+    band(.8, .95);
+    ctx.fillStyle = 'rgba(255,140,60,.16)'; ctx.fill();
+    ctx.restore();
+  }
+
+  // ---------- cup ----------
+  function rimArc(from, to, width, style) {
+    const { cx, rimY, rx, ry, lip } = L;
+    ctx.beginPath(); ctx.ellipse(cx, rimY, rx - lip * .5, ry - lip * .3, 0, from, to);
+    ctx.lineWidth = width; ctx.strokeStyle = style; ctx.stroke();
+  }
+  function lipGradient() {
+    const { cx, rx } = L;
+    const g = ctx.createLinearGradient(cx - rx, 0, cx + rx, 0);
+    g.addColorStop(0, '#a8987f'); g.addColorStop(.2, '#efe6d8'); g.addColorStop(.42, '#fffaf2');
+    g.addColorStop(.7, '#e5dac8'); g.addColorStop(1, '#9c8c74');
+    return g;
+  }
+
+  function drawCupBack(p, t, s) {
+    const { cx, rimY, rx, ry, lip, h, rb } = L;
+    // kraft paper body
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(cx - rx, rimY);
+    ctx.lineTo(cx - rb, rimY + h);
+    ctx.ellipse(cx, rimY + h, rb, rb * ry / rx, 0, Math.PI, 0, true);
+    ctx.lineTo(cx + rx, rimY);
+    ctx.closePath();
+    const kraft = ctx.createLinearGradient(cx - rx, 0, cx + rx, 0);
+    kraft.addColorStop(0, '#9c774f'); kraft.addColorStop(.45, '#bb966b'); kraft.addColorStop(1, '#a07a51');
+    ctx.fillStyle = kraft; ctx.fill();
+    ctx.clip();
+    ctx.globalAlpha = .07; ctx.fillStyle = paper;
+    ctx.fillRect(cx - rx, rimY, rx * 2, h + rx);
+    ctx.globalAlpha = 1;
+    // logo sticker, slightly squeezed by the curve of the cup
+    if (sticker.complete && sticker.naturalWidth) {
+      const sr = rx * .5;
+      ctx.save();
+      ctx.translate(cx, rimY + h * .33); ctx.scale(.94, 1);
+      ctx.shadowColor = 'rgba(40,25,10,.35)'; ctx.shadowBlur = 3 * DPR;
+      ctx.drawImage(sticker, -sr, -sr, sr * 2, sr * 2);
+      ctx.restore();
+    }
+    // glued seam
+    ctx.beginPath(); ctx.moveTo(cx + rx * .66, rimY); ctx.lineTo(cx + rb * .66, rimY + h);
+    ctx.lineWidth = 1.2; ctx.strokeStyle = 'rgba(70,45,20,.35)'; ctx.stroke();
+    // cylinder lighting over paper and sticker alike
+    const lit = ctx.createLinearGradient(cx - rx, 0, cx + rx, 0);
+    lit.addColorStop(0, 'rgba(0,0,0,.55)'); lit.addColorStop(.12, 'rgba(0,0,0,.22)'); lit.addColorStop(.3, 'rgba(255,240,220,.08)');
+    lit.addColorStop(.38, 'rgba(255,244,228,.16)'); lit.addColorStop(.5, 'rgba(0,0,0,0)'); lit.addColorStop(.76, 'rgba(0,0,0,.18)');
+    lit.addColorStop(1, 'rgba(0,0,0,.6)');
+    ctx.fillStyle = lit; ctx.fillRect(cx - rx, rimY, rx * 2, h + rx);
+    const vs = ctx.createLinearGradient(0, rimY, 0, rimY + h);
+    vs.addColorStop(0, 'rgba(0,0,0,.35)'); vs.addColorStop(.05, 'rgba(0,0,0,0)'); vs.addColorStop(.7, 'rgba(0,0,0,.08)'); vs.addColorStop(1, 'rgba(0,0,0,.45)');
+    ctx.fillStyle = vs; ctx.fillRect(cx - rx, rimY, rx * 2, h + rx);
+    const warm = ctx.createRadialGradient(cx + rx * .62, rimY + h * .15, 0, cx + rx * .62, rimY + h * .15, rx * .4);
+    warm.addColorStop(0, `rgba(255,140,60,${(.1 + s.glow * .4).toFixed(3)})`); warm.addColorStop(1, 'rgba(255,140,60,0)');
+    ctx.fillStyle = warm; ctx.fillRect(cx, rimY, rx, h);
+    ctx.restore();
+
+    // interior
+    ctx.save();
+    ctx.beginPath(); ctx.ellipse(cx, rimY, rx - lip, ry - lip * .6, 0, 0, TAU); ctx.clip();
+    const wg = ctx.createLinearGradient(0, rimY - ry, 0, rimY + ry);
+    wg.addColorStop(0, '#f2efea'); wg.addColorStop(.45, '#d6d1ca'); wg.addColorStop(1, '#8a847d');
+    ctx.fillStyle = wg; ctx.fillRect(cx - rx, rimY - ry, rx * 2, ry * 2);
+    const side = ctx.createLinearGradient(cx - rx, 0, cx + rx, 0);
+    side.addColorStop(0, 'rgba(0,0,0,.3)'); side.addColorStop(.3, 'rgba(0,0,0,0)');
+    side.addColorStop(.7, 'rgba(0,0,0,0)'); side.addColorStop(1, 'rgba(0,0,0,.22)');
+    ctx.fillStyle = side; ctx.fillRect(cx - rx, rimY - ry, rx * 2, ry * 2);
+    const ig = ctx.createRadialGradient(cx + rx * .45, rimY - ry * .2, 0, cx + rx * .45, rimY - ry * .2, rx * .5);
+    ig.addColorStop(0, `rgba(255,140,60,${s.glow.toFixed(3)})`); ig.addColorStop(1, 'rgba(255,140,60,0)');
+    ctx.fillStyle = ig; ctx.fillRect(cx - rx, rimY - ry, rx * 2, ry * 2);
+    if (s.stream > 0) {
+      // the stream's shadow on the far inner wall
+      const sx = cx + rx * .1, bw = s.sw * 2.8;
+      const wsh = ctx.createLinearGradient(sx - bw, 0, sx + bw, 0);
+      wsh.addColorStop(0, 'rgba(40,18,6,0)'); wsh.addColorStop(.5, `rgba(40,18,6,${(.38 * s.stream).toFixed(3)})`); wsh.addColorStop(1, 'rgba(40,18,6,0)');
+      ctx.fillStyle = wsh; ctx.fillRect(sx - bw, rimY - ry, bw * 2, Math.max(0, s.sy - rimY + ry));
+    }
+
+    if (s.fill > .001) {
+      const { sy, srx, sry, crema, impact } = s;
+      ctx.save();
+      ctx.translate(cx, sy); ctx.scale(1, sry / srx);
+      const lg = ctx.createRadialGradient(0, 0, 0, 0, 0, srx);
+      lg.addColorStop(0, mix('1e0c03', '5a2a0e', crema));
+      lg.addColorStop(.35, mix('3a1a08', 'a35a24', crema));
+      lg.addColorStop(.8, mix('4a220c', 'd39555', crema));
+      lg.addColorStop(.95, mix('3a1a08', 'b97a40', crema));
+      lg.addColorStop(1, '#2a1206');
+      ctx.beginPath(); ctx.arc(0, 0, srx, 0, TAU); ctx.fillStyle = lg; ctx.fill();
+      ctx.lineCap = 'round'; ctx.lineWidth = srx * .025;
+      for (let i = 0; i < 5; i++) {
+        const r = srx * (.25 + i * .14), a0 = t * .15 * (i % 2 ? 1 : -1) + i * 1.7;
+        ctx.beginPath(); ctx.arc(0, 0, r, a0, a0 + 1.2 + i * .2);
+        ctx.strokeStyle = `rgba(245,200,140,${(.14 * crema).toFixed(3)})`; ctx.stroke();
+      }
+      if (impact > 0) {
+        ctx.lineWidth = srx * .012;
+        for (let j = 0; j < 4; j++) {
+          const ph = (t * 1.8 + j / 4) % 1;
+          ctx.beginPath(); ctx.arc(0, 0, srx * (.05 + ph * .42), 0, TAU);
+          ctx.strokeStyle = `rgba(255,215,160,${((1 - ph) * .32 * impact).toFixed(3)})`; ctx.stroke();
+        }
+        const dg = ctx.createRadialGradient(0, 0, 0, 0, 0, srx * .13);
+        dg.addColorStop(0, `rgba(22,8,2,${(.7 * impact).toFixed(3)})`); dg.addColorStop(1, 'rgba(22,8,2,0)');
+        ctx.fillStyle = dg; ctx.fillRect(-srx, -srx, srx * 2, srx * 2);
+      }
+      const sh = ctx.createRadialGradient(-srx * .35, -srx * .45, 0, -srx * .35, -srx * .45, srx * .45);
+      sh.addColorStop(0, 'rgba(255,240,220,.12)'); sh.addColorStop(1, 'rgba(255,240,220,0)');
+      ctx.fillStyle = sh; ctx.fillRect(-srx, -srx, srx * 2, srx * 2);
+      if (s.stream > 0) {
+        // the stream's shadow on the crema, thrown back and to the right
+        ctx.save();
+        ctx.rotate(-.35);
+        const cs = ctx.createRadialGradient(srx * .3, -srx * .05, 0, srx * .3, -srx * .05, srx * .32);
+        cs.addColorStop(0, `rgba(14,5,1,${(.45 * s.stream).toFixed(3)})`); cs.addColorStop(1, 'rgba(14,5,1,0)');
+        ctx.scale(1, .35);
+        ctx.fillStyle = cs; ctx.fillRect(-srx, -srx * 3, srx * 2, srx * 6);
+        ctx.restore();
+        // glossy reflection of the stream towards the viewer
+        const rf = ctx.createLinearGradient(0, 0, 0, srx * .8);
+        rf.addColorStop(0, `rgba(255,170,90,${(.35 * s.stream).toFixed(3)})`); rf.addColorStop(1, 'rgba(255,170,90,0)');
+        ctx.beginPath(); ctx.ellipse(0, srx * .35, s.sw * .9, srx * .45, 0, 0, TAU);
+        ctx.fillStyle = rf; ctx.fill();
+      }
+      ctx.restore();
+    }
+    ctx.restore();
+
+    // far half of the lip sits BEHIND the stream
+    ctx.save();
+    ctx.lineCap = 'round';
+    rimArc(Math.PI, TAU, lip * 1.5, lipGradient());
+    const { cx: x0 } = L;
+    ctx.beginPath(); ctx.ellipse(x0, rimY, rx - lip * 1.3, ry - lip * .8, 0, Math.PI, TAU);
+    ctx.lineWidth = 1; ctx.strokeStyle = 'rgba(0,0,0,.2)'; ctx.stroke();
+    rimArc(Math.PI * 1.15, Math.PI * 1.15 + .35, lip * .6, 'rgba(255,255,255,.7)');
+    rimArc(Math.PI * 1.78, Math.PI * 1.78 + .3, lip * .6, 'rgba(255,255,255,.55)');
+    ctx.restore();
+  }
+
+  function drawCupFront() {
+    const { lip } = L;
+    ctx.save();
+    ctx.lineCap = 'round';
+    rimArc(0, Math.PI, lip * 1.5, lipGradient());
+    rimArc(Math.PI * .62, Math.PI * .62 + .26, lip * .5, 'rgba(255,255,255,.55)');
+    rimArc(Math.PI * .14, Math.PI * .14 + .14, lip * .5, 'rgba(255,255,255,.4)');
+    ctx.restore();
+  }
+
+  // white takeaway lid that drops on once the cup is full
+  function drawLid(lp) {
+    if (lp <= 0) return;
+    const { cx, rimY, rx, ry } = L;
+    const R = rx * 1.06, Ry = R * ry / rx, lh = rx * .16;
+    const drop = 1 - Math.pow(1 - lp, 3);
+    const base = rimY + rx * .02 - (1 - drop) * H * .8, top = base - lh;
+    const side = (x0, x1) => {
+      const g = ctx.createLinearGradient(x0, 0, x1, 0);
+      g.addColorStop(0, '#9d988f'); g.addColorStop(.15, '#e2ded7'); g.addColorStop(.38, '#ffffff');
+      g.addColorStop(.6, '#ece8e2'); g.addColorStop(.85, '#c4bfb7'); g.addColorStop(1, '#8f8a82');
+      return g;
+    };
+    ctx.save();
+    ctx.globalAlpha = clamp(lp * 4);
+    // skirt
+    ctx.beginPath();
+    ctx.moveTo(cx - R, top); ctx.lineTo(cx - R, base);
+    ctx.ellipse(cx, base, R, Ry, 0, Math.PI, 0, true);
+    ctx.lineTo(cx + R, top); ctx.closePath();
+    ctx.fillStyle = side(cx - R, cx + R); ctx.fill();
+    ctx.beginPath(); ctx.ellipse(cx, base - lh * .35, R, Ry, 0, 0, Math.PI);
+    ctx.lineWidth = 1.2; ctx.strokeStyle = 'rgba(0,0,0,.15)'; ctx.stroke();
+    // top ring and recessed well
+    const tg = ctx.createLinearGradient(0, top - Ry, 0, top + Ry);
+    tg.addColorStop(0, '#ffffff'); tg.addColorStop(1, '#ddd8d1');
+    ctx.beginPath(); ctx.ellipse(cx, top, R, Ry, 0, 0, TAU); ctx.fillStyle = tg; ctx.fill();
+    ctx.beginPath(); ctx.ellipse(cx, top + Ry * .06, R * .86, Ry * .86, 0, 0, TAU); ctx.fillStyle = '#d9d4cc'; ctx.fill();
+    // raised drinking dome with the sip hole
+    const dR = R * .78, dRy = dR * Ry / R, dh = lh * .55;
+    ctx.beginPath();
+    ctx.moveTo(cx - dR, top - dh); ctx.lineTo(cx - dR * 1.03, top);
+    ctx.ellipse(cx, top, dR * 1.03, dRy * 1.03, 0, Math.PI, 0, true);
+    ctx.lineTo(cx + dR, top - dh); ctx.closePath();
+    ctx.fillStyle = side(cx - dR, cx + dR); ctx.fill();
+    const pg = ctx.createLinearGradient(0, top - dh - dRy, 0, top - dh + dRy);
+    pg.addColorStop(0, '#fdfcfa'); pg.addColorStop(1, '#e9e5df');
+    ctx.beginPath(); ctx.ellipse(cx, top - dh, dR, dRy, 0, 0, TAU); ctx.fillStyle = pg; ctx.fill();
+    ctx.beginPath(); ctx.ellipse(cx, top - dh + dRy * .5, dR * .16, dRy * .14, 0, 0, TAU); ctx.fillStyle = '#2a2420'; ctx.fill();
+    ctx.beginPath(); ctx.ellipse(cx, top - dh, dR * .97, dRy * .9, 0, Math.PI * 1.1, Math.PI * 1.45);
+    ctx.lineWidth = 2; ctx.lineCap = 'round'; ctx.strokeStyle = 'rgba(255,255,255,.9)'; ctx.stroke();
+    ctx.restore();
+  }
+
+  // ---------- frame ----------
+  function draw(p, t, dt) {
+    const { cx, rimY, rx, ry, lip, rb, h, depthMax, k, bRx, bRy, F0, F1 } = L;
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    ctx.globalAlpha = 1;
+    ctx.drawImage(bg, 0, 0, W, H);
+
+    // camera: starts on the basket, pushes in along the stream, settles on the cup
+    const u = ease(seg(p, .2, .74));
+    const F = lerp(F0, F1, u);
+    const z = 1 + (L.mobile ? .9 : 1.15) * Math.sin(Math.PI * u);
+    ctx.setTransform(DPR * z, 0, 0, DPR * z, DPR * (W / 2 - cx * z), DPR * (H / 2 - F * z));
+    const visTop = F - H / 2 / z, visBot = F + H / 2 / z;
+
+    // pour timeline
+    const flow = seg(p, .16, .34);
+    const head = seg(p, .16, .3), tail = seg(p, .86, .92);
+    const fill = ease(seg(p, .58, .86));
+    const rIn = d => (rx - lip) - (rx - rb) * clamp(d / h);
+    const depth = lerp(depthMax, ry * .45, fill);
+    const s = {
+      fill, sy: rimY + depth, srx: rIn(depth), crema: seg(p, .6, .88),
+      impact: seg(p, .29, .31) * (1 - seg(p, .9, .93)),
+      glow: seg(p, .3, .4) * (1 - seg(p, .88, .94)) * .45 + fill * .12
+    };
+    s.sry = s.srx * ry / rx;
+    const widthMul = (.3 + .7 * flow) * (1 - .5 * seg(p, .82, .9));
+    s.stream = head > 0 && tail < 1 ? (1 - tail) * seg(p, .29, .31) : 0;
+    s.sw = 26 * k * widthMul;
+    const lid = seg(p, .95, .995);
+    const steamAmt = (.12 + .88 * seg(p, .62, .92)) * (1 - .75 * lid);
+    const cupVisible = rimY - rx < visBot + 40;
+
+    drawSmoke(0, t, 1);
+
+    // basket + drips
+    if (bRy > visTop - 20) drawBasket();
+    const R = bRx * .05;
+    sources.forEach((src, i) => {
+      const x = cx + src.dx * bRx, y0 = src.dy * bRy;
+      const allowed = i === 0 ? flow <= 0 : flow < .6;
+      if (allowed) {
+        src.t += dt;
+        if (src.t >= src.period) {
+          src.t = 0;
+          drops.push({ x, y: y0 + R * 2.2, vy: H * .15, r: R * (i ? .8 : 1) });
+        }
+      } else src.t = Math.max(0, src.t - dt * 2);
+      const grow = clamp(src.t / src.period);
+      if (grow > .02) drawHanging(x, y0, grow, R * (i ? .8 : 1));
+    });
+    for (let i = drops.length - 1; i >= 0; i--) {
+      const d = drops[i];
+      d.vy += H * 2.4 * dt; d.y += d.vy * dt;
+      if (d.y > rimY - H * .2) { drops.splice(i, 1); continue; }
+      if (d.y > visTop - 50 && d.y < visBot + 50) drawDrop(d.x, d.y, d.r, d.vy);
+    }
+
+    if (cupVisible) drawCupBack(p, t, s);
+
+    // stream, splashes and the last drop — visible above the rim and inside the opening
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(-W * 4, -H * 6, W * 9, rimY + H * 6);
+    ctx.ellipse(cx, rimY, rx - lip, ry - lip * .6, 0, 0, TAU);
+    ctx.clip();
+    if (head > 0 && tail < 1) {
+      const yb = lerp(0, s.sy, easeIn(head)), yt = lerp(0, s.sy, easeIn(tail));
+      const a = Math.max(yt, visTop - 60), b = Math.min(yb, visBot + 60);
+      if (b > a) drawStream(a, b, t, z, widthMul, tail > 0 && a === yt, head < 1 && b === yb);
+    }
+    if (cupVisible && s.impact > .5 && s.sy - s.sry < rimY + ry) {
+      for (let i = 0; i < dt * 34; i++) splash.push({ x: cx + (Math.random() - .5) * 8 * k, y: s.sy, vx: (Math.random() - .5) * 130 * k, vy: -(50 + Math.random() * 130) * k, life: 0, max: .2 + Math.random() * .25 });
+    }
+    for (let i = splash.length - 1; i >= 0; i--) {
+      const d = splash[i];
+      d.life += dt; d.vy += 900 * k * dt; d.x += d.vx * dt; d.y += d.vy * dt;
+      if (d.life > d.max || d.y > s.sy + 2) { splash.splice(i, 1); continue; }
+      ctx.beginPath(); ctx.arc(d.x, d.y, Math.max(1, 2.4 * k), 0, TAU);
+      ctx.fillStyle = `rgba(214,128,58,${(1 - d.life / d.max).toFixed(3)})`; ctx.fill();
+    }
+    const dp = seg(p, .92, .95);
+    if (dp > 0 && dp < 1) drawDrop(cx, lerp(visTop - 20, s.sy, easeIn(dp)), 9 * k, H);
+    ctx.restore();
+
+    if (cupVisible) { drawCupFront(); drawLid(lid); drawSteam(1, steamAmt); }
+    steam.forEach(q => { q.l += dt / (5 + q.s * 3); if (q.l > 1) { q.l -= 1; q.s = Math.random(); } });
+    drawSmoke(1, t, .8);
+  }
+
+  // ---------- scroll → progress ----------
+  let target = 0, cur = 0, capIdx = 0, heroVisible = true, last = 0;
+  const measure = () => {
+    const r = pour.getBoundingClientRect();
+    const total = pour.offsetHeight - innerHeight;
+    target = total > 0 ? clamp(-r.top / total) : 0;
+    heroVisible = r.bottom > 0;
+  };
+  addEventListener('scroll', measure, { passive: true });
+  addEventListener('resize', () => { resize(); measure(); });
+  resize(); measure();
+
+  function updateUI(p) {
+    const warm = ease(seg(p, .02, .14)), pressure = ease(seg(p, .08, .18));
+    ui.rail.style.width = (p * 100).toFixed(2) + '%';
+    ui.hint.classList.toggle('off', p > .02);
+    ui.mTemp.textContent = Math.round(20 + 73 * warm);
+    ui.mBar.textContent = (9 * pressure).toFixed(1).replace('.', ',');
+    ui.mTime.textContent = Math.round(28 * seg(p, .16, .86));
+    ui.mMl.textContent = Math.round(300 * ease(seg(p, .58, .86)));
+    const idx = p < .22 ? 0 : p < .58 ? 1 : p < .88 ? 2 : 3;
+    if (idx !== capIdx) { caps[capIdx].classList.remove('on'); caps[idx].classList.add('on'); capIdx = idx; }
+  }
+
+  function loop(ms) {
+    const dt = Math.min(.05, (ms - last) / 1000 || 0); last = ms;
+    cur += (target - cur) * .08;
+    if (Math.abs(target - cur) < .0002) cur = target;
+    // the first slide (drips) gets a shorter share of the scroll than the rest
+    const q = cur < .15 ? cur * (.22 / .15) : .22 + (cur - .15) * (.78 / .85);
+    if (heroVisible) { draw(q, ms / 1000, dt); updateUI(q); }
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+
+  // reveal on scroll
+  const io = new IntersectionObserver(entries => entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { threshold: .15 });
+  document.querySelectorAll('.reveal').forEach(n => io.observe(n));
+
+  $('#year').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
